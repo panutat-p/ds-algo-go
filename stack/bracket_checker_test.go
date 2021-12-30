@@ -1,13 +1,12 @@
 package stack
 
 import (
-	"container/list"
 	"fmt"
 	"testing"
 )
 
 func TestStackStoreString(t *testing.T) {
-	s := Stack{list.New()}
+	s := New()
 	s.Push("1")
 	s.Push("2")
 	s.Push("3")
@@ -22,7 +21,7 @@ func TestLoopThroughString(t *testing.T) {
 	}
 }
 
-func TestIsBracket(t *testing.T) {
+func TestIsBalancedBrackets(t *testing.T) {
 	s := "{}[]&{}[2]()"
 	rslt := IsBalancedBrackets(s)
 
@@ -31,7 +30,7 @@ func TestIsBracket(t *testing.T) {
 	}
 }
 
-func TestIsBracket2(t *testing.T) {
+func TestIsBalancedBrackets_nested(t *testing.T) {
 	s := "{{1{[()]}}2}"
 	rslt := IsBalancedBrackets(s)
 
@@ -39,7 +38,7 @@ func TestIsBracket2(t *testing.T) {
 		t.Errorf("got %v, but expect %v", rslt, true)
 	}
 }
-func TestIsBracket3(t *testing.T) {
+func TestIsBalancedBrackets_false(t *testing.T) {
 	s := "{([)}"
 	rslt := IsBalancedBrackets(s)
 

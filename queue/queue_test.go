@@ -1,13 +1,15 @@
-package stack
+package queue
 
 import (
-	"container/list"
+	"fmt"
 	"testing"
 )
 
 func TestQueue(t *testing.T) {
-	q := Queue{list.New()}
+	q := New()
 	_, err := q.Peek()
+
+	fmt.Printf("%T/n", err)
 
 	if err == nil {
 		t.Errorf("got %v, but expect %v", err, "queue is empty")
@@ -15,7 +17,7 @@ func TestQueue(t *testing.T) {
 }
 
 func TestQueue_Enqueue(t *testing.T) {
-	q := Queue{list.New()}
+	q := New()
 	q.Enqueue(1)
 	q.Enqueue(2)
 	q.Enqueue(3)

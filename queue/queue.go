@@ -1,4 +1,4 @@
-package stack
+package queue
 
 import (
 	"container/list"
@@ -9,6 +9,10 @@ import (
 
 type Queue struct { // linked list based queue
 	li *list.List
+}
+
+func New() *Queue {
+	return &Queue{list.New()}
 }
 
 func (q Queue) Print() {

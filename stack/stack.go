@@ -10,6 +10,10 @@ type Stack struct {
 	li *list.List
 }
 
+func New() *Stack {
+	return &Stack{list.New()}
+}
+
 func (s Stack) Print() {
 	var forward strings.Builder
 	current := s.li.Front()
