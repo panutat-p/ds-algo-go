@@ -4,7 +4,7 @@ import (
 	"errors"
 )
 
-type dynamicArray struct {
+type DynamicArray struct {
 	Arr      []int
 	Size     int // length that user thinks array is
 	Capacity int // actual size
@@ -12,25 +12,25 @@ type dynamicArray struct {
 
 // MakeDynamicArray
 // constructor
-func MakeDynamicArray() dynamicArray {
+func MakeDynamicArray() DynamicArray {
 	initialCapacity := 16
 	sl := make([]int, 0, initialCapacity)
-	return dynamicArray{sl, 0, initialCapacity}
+	return DynamicArray{sl, 0, initialCapacity}
 }
 
-func (d dynamicArray) IsEmpty() bool {
+func (d DynamicArray) IsEmpty() bool {
 	return d.Size == 0
 }
 
-func (d dynamicArray) Get(index int) int {
+func (d DynamicArray) Get(index int) int {
 	return d.Arr[index]
 }
 
-func (d *dynamicArray) Set(index int, ele int) {
+func (d *DynamicArray) Set(index int, ele int) {
 	(*d).Arr[index] = ele
 }
 
-func (d *dynamicArray) Clear() {
+func (d *DynamicArray) Clear() {
 	for i := 0; i < (*d).Size; i += 1 {
 		(*d).Arr[i] = 0
 	}
@@ -39,7 +39,7 @@ func (d *dynamicArray) Clear() {
 // Append
 // resize array if Size reach Capacity
 // allow using d instead of *d in the function body without the explicit dereference
-func (d *dynamicArray) Append(ele int) {
+func (d *DynamicArray) Append(ele int) {
 	if d.Size+1 > d.Capacity {
 		d.Capacity *= 2                        // grow exponential
 		arr := make([]int, d.Size, d.Capacity) // make new array with double size
@@ -54,7 +54,7 @@ func (d *dynamicArray) Append(ele int) {
 	d.Size += 1
 }
 
-func (d *dynamicArray) Pop(index int) (int, error) {
+func (d *DynamicArray) Pop(index int) (int, error) {
 	if index > d.Size || index < 0 {
 		return -1, errors.New("index out of range")
 	}
@@ -80,7 +80,7 @@ func (d *dynamicArray) Pop(index int) (int, error) {
 	return rst, nil
 }
 
-func (d *dynamicArray) Remove(num int) bool {
+func (d *DynamicArray) Remove(num int) bool {
 	var index int
 	for i, v := range d.Arr {
 		if v == num {
