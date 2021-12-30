@@ -44,5 +44,5 @@ func (s *Stack) Push(v interface{}) {
 func (s *Stack) Pop() interface{} {
 	ele := s.li.Back()
 	s.li.Remove(ele)
-	return ele
+	return ele.Value
 }
