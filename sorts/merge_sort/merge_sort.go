@@ -19,7 +19,7 @@ func Merge(left []int, right []int) []int {
 	var sl []int
 	i, j := 0, 0
 	for i < len(left) && j < len(right) {
-		if left[i] < right[j] {
+		if left[i] <= right[j] { // 🦊 stable sort
 			sl = append(sl, left[i])
 			i += 1
 		} else {
