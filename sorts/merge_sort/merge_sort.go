@@ -1,5 +1,11 @@
 package merge_sort
 
+/*
+https://www.programiz.com/dsa/merge-sort
+*/
+
+// MergeSort
+// original slice remains unchanged
 func MergeSort(sl []int) []int {
 	if len(sl) <= 1 {
 		return sl
