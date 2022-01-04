@@ -8,12 +8,12 @@ https://www.programiz.com/dsa/quick-sort
 // inplace
 // use value at lastIndex as pivot
 // partitioning contains only one for loop
-func QuickSortSwap(sl []int, firstIndex int, LastIndex int) {
-	if firstIndex < LastIndex {
-		pivotIndex := partitionSwap(sl, firstIndex, LastIndex)
+func QuickSortSwap(sl []int, firstIndex int, lastIndex int) {
+	if firstIndex < lastIndex {
+		pivotIndex := partitionSwap(sl, firstIndex, lastIndex)
 
 		QuickSortSwap(sl, firstIndex, pivotIndex-1)
-		QuickSortSwap(sl, pivotIndex+1, LastIndex)
+		QuickSortSwap(sl, pivotIndex+1, lastIndex)
 	}
 }
 
