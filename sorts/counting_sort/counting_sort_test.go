@@ -20,6 +20,17 @@ func TestCountingSort(t *testing.T) {
 	}
 }
 
+func TestCountingSort2(t *testing.T) {
+	sl := []int{2, 2, 2, 2, 1, 2}
+
+	CountingSort(sl, 1, 2)
+	fmt.Println(sl)
+
+	if !IsSorted(sl) {
+		t.Errorf("got %v, but expect %v", IsSorted(sl), true)
+	}
+}
+
 func IsSorted(sl []int) bool {
 	for i := 0; i < len(sl)-1; i += 1 {
 		if sl[i] > sl[i+1] {
