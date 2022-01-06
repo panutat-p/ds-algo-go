@@ -9,6 +9,15 @@ import (
 	"testing"
 )
 
+func IsSorted(sl []int) bool {
+	for i := 0; i < len(sl)-1; i += 1 {
+		if sl[i] > sl[i+1] {
+			return false
+		}
+	}
+	return true
+}
+
 func TestCountingSort(t *testing.T) {
 	sl := []int{5, 2, 5, 4, 1, 3}
 
@@ -29,13 +38,4 @@ func TestCountingSort2(t *testing.T) {
 	if !IsSorted(sl) {
 		t.Errorf("got %v, but expect %v", IsSorted(sl), true)
 	}
-}
-
-func IsSorted(sl []int) bool {
-	for i := 0; i < len(sl)-1; i += 1 {
-		if sl[i] > sl[i+1] {
-			return false
-		}
-	}
-	return true
 }
