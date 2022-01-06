@@ -33,3 +33,13 @@ func TestInsertionSort2(t *testing.T) {
 		t.Errorf("got %v, but expect %v", IsSorted(sl), true)
 	}
 }
+
+func TestRecursiveInsertionSort(t *testing.T) {
+	sl := []int{30, 5, 6, 27, 100, 3, 51, 7, 49, 0, 4, 63}
+	RecursiveInsertionSort(sl, len(sl))
+	fmt.Println(sl)
+
+	if !IsSorted(sl) {
+		t.Errorf("got %v, but expect %v", IsSorted(sl), true)
+	}
+}
