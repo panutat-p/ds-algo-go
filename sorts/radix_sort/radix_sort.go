@@ -46,3 +46,10 @@ func RadixSort(sl []int, radix int, width int) []int {
 func getDigit(num int, position int, radix int) int {
 	return (num / int(math.Pow(10, float64(position)))) % radix
 }
+
+// call radixSort with radix=26, because ASCII lower case contains 26 characters
+// "a" >> 0
+// "b" >> 1
+func getChar(text string, position int) int {
+	return int(text[position] - "a"[0])
+}
