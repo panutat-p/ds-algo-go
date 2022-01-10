@@ -10,7 +10,7 @@ func IsBalancedBrackets(str string) bool {
 	leftBrackets := map[string]string{"(": ")", "[": "]", "{": "}", "<": ">"}
 	rightBrackets := map[string]bool{")": true, "]": true, "}": true, ">": true}
 
-	s := New()
+	s := New() // stack
 	for _, v := range str {
 		b := string(v)
 		if right, ok := leftBrackets[b]; ok { // it is left bracket
