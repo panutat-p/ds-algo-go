@@ -37,3 +37,12 @@ func TestIsPalindrome4(t *testing.T) {
 		t.Errorf("got %v, but expect %v", rslt, false)
 	}
 }
+
+func TestIsPalindromeQueueStack(t *testing.T) {
+	str := "hello"
+	rslt := IsPalindromeQueueStack(str)
+
+	if rslt {
+		t.Errorf("got %v, but expect %v", rslt, false)
+	}
+}
