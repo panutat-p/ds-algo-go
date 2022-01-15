@@ -69,10 +69,21 @@ func TestCircularQueue_Dequeue(t *testing.T) {
 	cq.Dequeue()
 	fmt.Printf("%+v\n", cq)
 	fmt.Println("Size:", cq.Size())
-
 	cq.Print()
 
 	if cq.Size() != 3 {
 		t.Errorf("got %v, but expect %v", cq.Size(), 3)
+	}
+
+	cq.Dequeue()
+	cq.Dequeue()
+	cq.Dequeue()
+	cq.Enqueue(100)
+	fmt.Printf("%+v\n", cq)
+	fmt.Println("Size:", cq.Size())
+	cq.Print()
+
+	if cq.Size() != 1 {
+		t.Errorf("got %v, but expect %v", cq.Size(), 1)
 	}
 }

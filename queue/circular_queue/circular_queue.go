@@ -56,6 +56,7 @@ func (cq *CircularQueue) Dequeue() (interface{}, error) {
 		// this happens when frontIndex hit the rearIndex
 		cq.frontIndex = 0
 		cq.rearIndex = 0
+		cq.isWrapped = false
 	} else if cq.isWrapped && cq.frontIndex == len(cq.sl) {
 		// this can happen when slice was wrapped, if not, frontIndex will hit rearIndex before hit the length
 		cq.frontIndex = 0
