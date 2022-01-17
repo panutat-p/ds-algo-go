@@ -11,7 +11,7 @@ type Fruit struct {
 	Price int
 }
 
-type FruitCart [10]*Fruit // 🦊 for simplicity, use fixed size array to simplify hash function
+type FruitCart [10]Fruit // 🦊 for simplicity, use fixed size array to simplify hash function
 
 func (fc *FruitCart) Put(name string, price int) error {
 	if name == "" || price < 0 {
@@ -20,7 +20,7 @@ func (fc *FruitCart) Put(name string, price int) error {
 
 	hash := hash(name)
 
-	if fc[hash] != nil { // collision
+	if fc[hash] != (Fruit{}) { // collision
 		stopIndex := hash // stop probing at old position in case of full array
 		if hash == len(fc)-1 {
 			hash = 0 // try pushing at the first index
@@ -28,7 +28,7 @@ func (fc *FruitCart) Put(name string, price int) error {
 			hash += 1 // try pushing after old position
 		}
 		for {
-			if fc[hash] == nil { // found the empty index
+			if fc[hash] == (Fruit{}) { // found the empty index
 				break // use this hash value
 			}
 			if hash == stopIndex { // array is full
@@ -38,7 +38,7 @@ func (fc *FruitCart) Put(name string, price int) error {
 		}
 	}
 
-	fc[hash] = &Fruit{
+	fc[hash] = Fruit{
 		name,
 		price}
 	return nil
@@ -48,10 +48,10 @@ func hash(key string) int {
 	return len(key) % 10
 }
 
-func (fc FruitCart) Get(name string) (*Fruit, error) {
+func (fc FruitCart) Get(name string) (Fruit, error) {
 	hash, err := fc.IndexOf(name)
 	if err != nil {
-		return nil, errors.New("key not found")
+		return Fruit{}, errors.New("key not found")
 	}
 	return fc[hash], nil
 }
@@ -59,7 +59,7 @@ func (fc FruitCart) Get(name string) (*Fruit, error) {
 func (fc FruitCart) IndexOf(name string) (int, error) {
 	hash := hash(name)
 
-	if fc[hash] != nil && fc[hash].Name == name {
+	if fc[hash] != (Fruit{}) && fc[hash].Name == name {
 		return hash, nil
 	}
 
@@ -71,10 +71,10 @@ func (fc FruitCart) IndexOf(name string) (int, error) {
 	}
 
 	for {
-		if fc[hash] == nil {
+		if fc[hash] == (Fruit{}) {
 			return -1, errors.New("end of collision, item not found")
 		}
-		if fc[hash] != nil && fc[hash].Name == name {
+		if fc[hash] != (Fruit{}) && fc[hash].Name == name {
 			return hash, nil
 		}
 		if hash == stopIndex {
@@ -91,21 +91,21 @@ func (fc FruitCart) IndexOf(name string) (int, error) {
 // That wouldn't matter for a small array, but for a hashtable that contains a large number of items,
 // the performance of getting a value would degrade too much.
 // The whole point of using a hashtable is that retrieving items is fast.
-func (fc *FruitCart) Remove(name string) (*Fruit, error) {
+func (fc *FruitCart) Remove(name string) (Fruit, error) {
 	index, err := fc.IndexOf(name)
 	if err != nil {
-		return nil, errors.New("item not found")
+		return Fruit{}, errors.New("item not found")
 	}
 	rslt := fc[index]
-	fc[index] = nil
+	fc[index] = Fruit{}
 
 	// rehashing entire array
 	old := *fc // ⚠️ old := fc means store pointer of fc to old, clear fc will affect old
 	for i := range fc {
-		fc[i] = nil // clear array
+		fc[i] = Fruit{} // clear array
 	}
 	for _, v := range old {
-		if v != nil {
+		if v != (Fruit{}) {
 			err := fc.Put(v.Name, v.Price) // Put() will call hash() again
 			if err != nil {
 				panic(err)
@@ -119,7 +119,7 @@ func (fc *FruitCart) Remove(name string) (*Fruit, error) {
 func (fc FruitCart) LoadFactor() float32 {
 	count := 0
 	for _, v := range fc {
-		if v != nil {
+		if v != (Fruit{}) {
 			count += 1
 		}
 	}
@@ -129,8 +129,8 @@ func (fc FruitCart) LoadFactor() float32 {
 func (fc FruitCart) Print() {
 	sb := strings.Builder{}
 	for _, v := range fc {
-		if v == nil {
-			sb.WriteString("nil ")
+		if v == (Fruit{}) {
+			sb.WriteString("<> ")
 			continue
 		}
 		str := fmt.Sprintf("<%v %v> ", v.Name, v.Price)

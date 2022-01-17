@@ -29,12 +29,9 @@ func TestFruitCart_Push_collision(t *testing.T) {
 	if err != nil {
 		t.Errorf("got %v, but expect %v", err, nil)
 	}
-	if rslt.Name != "BANANA" {
-		t.Errorf("got %v, but expect %v", rslt, "BANANA")
-	}
 
-	if rslt.Price != 12 {
-		t.Errorf("got %v, but expect %v", rslt.Price, 12)
+	if rslt != (Fruit{"BANANA", 12}) {
+		t.Errorf("got %v, but expect %v", rslt, Fruit{"BANANA", 12})
 	}
 }
 
@@ -53,16 +50,12 @@ func TestFruitCart_Find_collision(t *testing.T) {
 		t.Errorf("got %v, but expect %v", err, nil)
 	}
 
-	if rslt.Name != "BANANA" {
-		t.Errorf("got %v, but expect %v", rslt, "BANANA")
-	}
-
-	if rslt.Price != 12 {
-		t.Errorf("got %v, but expect %v", rslt.Price, 12)
+	if rslt != (Fruit{"BANANA", 12}) {
+		t.Errorf("got %v, but expect %v", rslt, Fruit{"BANANA", 12})
 	}
 }
 
-func TestFruitCart_Remove(t *testing.T) {
+func TestFruitCart_Remove_rehashing(t *testing.T) {
 	fc := FruitCart{}
 	fc.Put("banana", 10)
 	fc.Put("BANANA", 12)
@@ -78,11 +71,11 @@ func TestFruitCart_Remove(t *testing.T) {
 		t.Errorf("got %v, but expect %v", err, nil)
 	}
 
-	if rslt.Name != "watermelon" {
-		t.Errorf("got %v, but expect %v", rslt, "watermelon")
+	if rslt != (Fruit{"watermelon", 18}) {
+		t.Errorf("got %v, but expect %v", rslt, Fruit{"watermelon", 18})
 	}
 
-	if rslt.Price != 18 {
-		t.Errorf("got %v, but expect %v", rslt.Price, 18)
+	if fc[0] != (Fruit{"WATERMELON", 20}) {
+		t.Errorf("got %v, but expect %v", fc[0], Fruit{"WATERMELON", 20})
 	}
 }
