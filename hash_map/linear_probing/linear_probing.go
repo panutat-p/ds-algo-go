@@ -48,6 +48,14 @@ func hash(key string) int {
 	return len(key) % 10
 }
 
+func hash2(key string) int {
+	sum := 0
+	for _, v := range key {
+		sum += int(v)
+	}
+	return sum % 10
+}
+
 func (fc FruitCart) Get(name string) (Fruit, error) {
 	hash, err := fc.IndexOf(name)
 	if err != nil {

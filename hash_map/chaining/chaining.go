@@ -39,6 +39,14 @@ func hash(key string) uint32 {
 	return h.Sum32() % 10
 }
 
+func hash2(key string) int {
+	sum := 0
+	for _, v := range key {
+		sum += int(v)
+	}
+	return sum % 10
+}
+
 func (fc *FruitCart) Remove(name string) (Fruit, error) {
 	hash := hash(name)
 	for e := fc[hash].Front(); e != nil; e = e.Next() {
