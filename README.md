@@ -1,4 +1,7 @@
 # ds-algo-go
 
-https://github.com/williamfiset/Algorithms
+### Treehouse
+https://www.youtube.com/watch?v=8hly31xKli0
 
+### William Fiset
+https://github.com/williamfiset/Algorithms
