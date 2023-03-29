@@ -6,8 +6,8 @@ import (
 	"time"
 )
 
-// SelectionSort O(n^2) time
-func SelectionSort(sl []int) []int {
+// SelectionSortSlice O(n^2) time
+func SelectionSortSlice(sl []int) []int {
 	start := time.Now()
 	var sortedSl []int
 	for len(sl) != 0 {
