@@ -2,8 +2,9 @@ package bogo_sort
 
 import (
 	"fmt"
-	"github.com/panutat-p/fiset-complete-ds-go/pkg"
 	"testing"
+
+	"github.com/panutat-p/fiset-complete-ds-go/pkg"
 )
 
 func TestBogoSort(t *testing.T) {
