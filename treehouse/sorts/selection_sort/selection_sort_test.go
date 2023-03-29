@@ -2,9 +2,8 @@ package selection_sort
 
 import (
 	"fmt"
+	"github.com/panutat-p/fiset-complete-ds-go/pkg"
 	"testing"
-
-	"github.com/panutat-p/fiset-complete-ds-go/treehouse/sorts/bogo_sort"
 )
 
 func TestSelectionSort(t *testing.T) {
@@ -12,8 +11,8 @@ func TestSelectionSort(t *testing.T) {
 	sortedSl := SelectionSort(sl)
 	fmt.Println(sortedSl)
 
-	if !bogo_sort.IsSorted(sortedSl) {
+	if !pkg.IsSorted(sortedSl) {
 		fmt.Println(sortedSl)
-		t.Errorf("got %v, but expect %v", bogo_sort.IsSorted(sortedSl), true)
+		t.Errorf("got %v, but expect %v", pkg.IsSorted(sortedSl), true)
 	}
 }

@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"testing"
 
-	"github.com/panutat-p/fiset-complete-ds-go/treehouse/sorts/bogo_sort"
+	"github.com/panutat-p/fiset-complete-ds-go/pkg"
 )
 
 func TestSplit(t *testing.T) {
@@ -28,8 +28,8 @@ func TestMerge(t *testing.T) {
 		t.Errorf("got %v, but expect %v", len(sl), 5)
 	}
 
-	if !bogo_sort.IsSorted(sl) {
-		t.Errorf("got %v, but expect %v", bogo_sort.IsSorted(sl), true)
+	if !pkg.IsSorted(sl) {
+		t.Errorf("got %v, but expect %v", pkg.IsSorted(sl), true)
 	}
 }
 
@@ -43,7 +43,7 @@ func TestMergeSort(t *testing.T) {
 		t.Errorf("got %v, but expect %v", sl2[0] > sl2[1], false)
 	}
 
-	if !bogo_sort.IsSorted(sl2) {
-		t.Errorf("got %v, but expect %v", bogo_sort.IsSorted(sl2), true)
+	if !pkg.IsSorted(sl2) {
+		t.Errorf("got %v, but expect %v", pkg.IsSorted(sl2), true)
 	}
 }

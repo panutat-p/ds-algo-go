@@ -2,10 +2,9 @@ package quick_sort
 
 import (
 	"fmt"
+	"github.com/panutat-p/fiset-complete-ds-go/pkg"
 	"testing"
 	"time"
-
-	"github.com/panutat-p/fiset-complete-ds-go/treehouse/sorts/bogo_sort"
 )
 
 func TestQuickSort(t *testing.T) {
@@ -16,8 +15,8 @@ func TestQuickSort(t *testing.T) {
 	fmt.Println("time elapsed:", elapsed)
 	fmt.Println(sortedSl)
 
-	if !bogo_sort.IsSorted(sortedSl) {
+	if !pkg.IsSorted(sortedSl) {
 		fmt.Println(sortedSl)
-		t.Errorf("got %v, but expect %v", bogo_sort.IsSorted(sortedSl), true)
+		t.Errorf("got %v, but expect %v", pkg.IsSorted(sortedSl), true)
 	}
 }
