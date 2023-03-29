@@ -2,15 +2,16 @@ package merge_sort
 
 import (
 	"fmt"
-	"github.com/panutat-p/fiset-complete-ds-go/treehouse/linked_list"
 	"testing"
+
+	"github.com/panutat-p/fiset-complete-ds-go/linked_list"
 )
 
 func TestSplitLinkedListOdd(t *testing.T) {
 	li := linked_list.LinkedList{}
-	n3 := linked_list.Node{3, nil}
-	n2 := linked_list.Node{2, &n3}
-	n1 := linked_list.Node{1, &n2}
+	n3 := linked_list.SinglyNode{Data: 3}
+	n2 := linked_list.SinglyNode{Data: 2, NextNode: &n3}
+	n1 := linked_list.SinglyNode{Data: 1, NextNode: &n2}
 	li.Head = &n1
 
 	left, right := SplitLinkedList(li)
@@ -28,10 +29,10 @@ func TestSplitLinkedListOdd(t *testing.T) {
 
 func TestSplitLinkedListEven(t *testing.T) {
 	li := linked_list.LinkedList{}
-	n4 := linked_list.Node{4, nil}
-	n3 := linked_list.Node{3, &n4}
-	n2 := linked_list.Node{2, &n3}
-	n1 := linked_list.Node{1, &n2}
+	n4 := linked_list.SinglyNode{Data: 4}
+	n3 := linked_list.SinglyNode{Data: 3, NextNode: &n4}
+	n2 := linked_list.SinglyNode{Data: 2, NextNode: &n3}
+	n1 := linked_list.SinglyNode{Data: 1, NextNode: &n2}
 	li.Head = &n1
 	li.Traverse()
 
@@ -52,15 +53,15 @@ func TestSplitLinkedListEven(t *testing.T) {
 
 func TestMergeLinkedList(t *testing.T) {
 	left := linked_list.LinkedList{}
-	n3 := linked_list.Node{7, nil}
-	n2 := linked_list.Node{5, &n3}
-	n1 := linked_list.Node{1, &n2}
+	n3 := linked_list.SinglyNode{Data: 7}
+	n2 := linked_list.SinglyNode{Data: 5, NextNode: &n3}
+	n1 := linked_list.SinglyNode{Data: 1, NextNode: &n2}
 	left.Head = &n1
 
 	right := linked_list.LinkedList{}
-	n33 := linked_list.Node{8, nil}
-	n22 := linked_list.Node{4, &n33}
-	n11 := linked_list.Node{2, &n22}
+	n33 := linked_list.SinglyNode{Data: 8}
+	n22 := linked_list.SinglyNode{Data: 4, NextNode: &n33}
+	n11 := linked_list.SinglyNode{Data: 2, NextNode: &n22}
 	right.Head = &n11
 
 	li := MergeLinkedList(left, right)
@@ -73,13 +74,13 @@ func TestMergeLinkedList(t *testing.T) {
 
 func TestMergeSortLinkedList(t *testing.T) {
 	li := linked_list.LinkedList{}
-	n7 := linked_list.Node{1, nil}
-	n6 := linked_list.Node{50, &n7}
-	n5 := linked_list.Node{99, &n6}
-	n4 := linked_list.Node{9, &n5}
-	n3 := linked_list.Node{34, &n4}
-	n2 := linked_list.Node{2, &n3}
-	n1 := linked_list.Node{100, &n2}
+	n7 := linked_list.SinglyNode{Data: 1}
+	n6 := linked_list.SinglyNode{Data: 50, NextNode: &n7}
+	n5 := linked_list.SinglyNode{Data: 99, NextNode: &n6}
+	n4 := linked_list.SinglyNode{Data: 9, NextNode: &n5}
+	n3 := linked_list.SinglyNode{Data: 34, NextNode: &n4}
+	n2 := linked_list.SinglyNode{Data: 2, NextNode: &n3}
+	n1 := linked_list.SinglyNode{Data: 100, NextNode: &n2}
 	li.Head = &n1
 	li.Traverse()
 

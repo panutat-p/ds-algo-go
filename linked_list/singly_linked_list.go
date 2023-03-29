@@ -9,29 +9,29 @@ import (
 	"fmt"
 )
 
-type Node struct {
+type SinglyNode struct {
 	Data     int
-	NextNode *Node
+	NextNode *SinglyNode
 }
 
-func Constructor(data int) Node {
-	return Node{data, nil}
+func Constructor(data int) SinglyNode {
+	return SinglyNode{data, nil}
 }
 
 // SetNextNode
 // no need to implement setter because NextNode is public field
-func (n *Node) SetNextNode(next *Node) {
+func (n *SinglyNode) SetNextNode(next *SinglyNode) {
 	fmt.Printf("\nnext: %p", next)
 	fmt.Printf(", %+v\n", next)
 	n.NextNode = next
 }
 
 type LinkedList struct {
-	Head *Node
+	Head *SinglyNode
 	//tail Node
 }
 
-func (li LinkedList) Traverse() {
+func (li *LinkedList) Traverse() {
 	current := li.Head
 	for {
 		if current == nil {
@@ -43,11 +43,11 @@ func (li LinkedList) Traverse() {
 	}
 }
 
-func (li LinkedList) IsEmpty() bool {
+func (li *LinkedList) IsEmpty() bool {
 	return li.Head == nil
 }
 
-func (li LinkedList) Size() int {
+func (li *LinkedList) Size() int {
 	current := li.Head
 	count := 0
 	for current != nil {
@@ -59,7 +59,7 @@ func (li LinkedList) Size() int {
 
 // Prepend
 // handle empty linked list
-func (li *LinkedList) Prepend(newNode *Node) {
+func (li *LinkedList) Prepend(newNode *SinglyNode) {
 	if li.IsEmpty() {
 		li.Head = newNode
 		return
@@ -72,13 +72,13 @@ func (li *LinkedList) Prepend(newNode *Node) {
 // Append
 // handle empty linked list
 // handle linked list with size of 1
-func (li *LinkedList) Append(newNode *Node) {
+func (li *LinkedList) Append(newNode *SinglyNode) {
 	if li.IsEmpty() {
 		li.Head = newNode
 		return
 	}
 
-	var previous *Node
+	var previous *SinglyNode
 	current := li.Head
 	for {
 		if current == nil {
@@ -90,7 +90,7 @@ func (li *LinkedList) Append(newNode *Node) {
 	}
 }
 
-func (li *LinkedList) Insert(newNode *Node, index int) error {
+func (li *LinkedList) Insert(newNode *SinglyNode, index int) error {
 	if index == 0 {
 		li.Prepend(newNode)
 		return nil
@@ -120,7 +120,7 @@ func (li *LinkedList) Delete(num int) bool {
 		return false
 	}
 
-	var previous *Node
+	var previous *SinglyNode
 	fmt.Println("**********previous**********")
 	fmt.Println(previous)
 	current := li.Head
@@ -146,7 +146,7 @@ func (li *LinkedList) Delete(num int) bool {
 	}
 }
 
-func (li LinkedList) Search(num int) bool {
+func (li *LinkedList) Search(num int) bool {
 	current := li.Head
 	for current != nil {
 		if current.Data == num {

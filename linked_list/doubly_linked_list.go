@@ -6,9 +6,15 @@ import (
 	"strings"
 )
 
+type DoublyNode struct {
+	Data int
+	Prev *DoublyNode
+	Next *DoublyNode
+}
+
 type DoublyLinkedList struct {
-	Head *Node
-	Tail *Node
+	Head *DoublyNode
+	Tail *DoublyNode
 	Size int
 }
 
@@ -45,7 +51,7 @@ func (li DoublyLinkedList) IsEmpty() bool {
 }
 
 func (li *DoublyLinkedList) Append(num int) {
-	newNode := &Node{num, nil, nil}
+	newNode := &DoublyNode{num, nil, nil}
 
 	if li.IsEmpty() {
 		li.Head, li.Tail = newNode, newNode
@@ -60,7 +66,7 @@ func (li *DoublyLinkedList) Append(num int) {
 }
 
 func (li *DoublyLinkedList) Prepend(num int) {
-	newNode := &Node{num, nil, nil}
+	newNode := &DoublyNode{num, nil, nil}
 
 	if li.IsEmpty() {
 		li.Head, li.Tail = newNode, newNode
@@ -93,7 +99,7 @@ func (li *DoublyLinkedList) Insert(index int, num int) bool {
 	for i := 0; i < index-1; i += 1 { // traverse to Node before index
 		current = current.Next
 	}
-	newNode := &Node{num, current, current.Next} // add newNode after the current Node
+	newNode := &DoublyNode{num, current, current.Next} // add newNode after the current Node
 	current.Next.Prev = newNode
 	current.Next = newNode
 	li.Size += 1

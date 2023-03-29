@@ -1,6 +1,8 @@
 package merge_sort
 
-import "github.com/panutat-p/fiset-complete-ds-go/treehouse/linked_list"
+import (
+	"github.com/panutat-p/fiset-complete-ds-go/linked_list"
+)
 
 /*
 https://pkg.go.dev/container/list@go1.17.5#Element
@@ -36,15 +38,15 @@ func SplitLinkedList(li linked_list.LinkedList) (linked_list.LinkedList, linked_
 		current = current.NextNode
 	}
 
-	right := linked_list.LinkedList{current.NextNode}
+	right := linked_list.LinkedList{Head: current.NextNode}
 	current.NextNode = nil // cut the chain at the midpoint
 	return li, right
 }
 
 // MergeLinkedList O(n) time
 func MergeLinkedList(left linked_list.LinkedList, right linked_list.LinkedList) linked_list.LinkedList {
-	n := linked_list.Node{0, nil} // fake node
-	li := linked_list.LinkedList{&n}
+	n := linked_list.SinglyNode{} // fake node
+	li := linked_list.LinkedList{Head: &n}
 
 	current := li.Head
 	leftNode := left.Head
