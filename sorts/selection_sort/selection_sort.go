@@ -5,7 +5,20 @@ import (
 	"time"
 )
 
-func SelectionSort(sl []int) {
+func SelectionSort(nums []int) []int {
+	for i := 0; i < len(nums); i += 1 {
+		for j := i + 1; j < len(nums); j += 1 {
+			if nums[i] > nums[j] {
+				// found lower value in the right
+				nums[i], nums[j] = nums[j], nums[i]
+				fmt.Println("nums", nums)
+			}
+		}
+	}
+	return nums
+}
+
+func SelectionSortBackward(sl []int) {
 	start := time.Now()
 	count := 0
 

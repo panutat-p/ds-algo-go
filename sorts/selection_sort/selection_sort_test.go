@@ -16,7 +16,7 @@ func IsSorted(sl []int) bool {
 
 func TestSelectionSort(t *testing.T) {
 	sl := []int{30, 5, 6, 27, 100, 3, 51, 7, 49, 0, 4, 63}
-	SelectionSort(sl)
+	SelectionSortBackward(sl)
 	fmt.Println(sl)
 
 	if !IsSorted(sl) {
@@ -26,7 +26,7 @@ func TestSelectionSort(t *testing.T) {
 
 func TestSelectionSort2(t *testing.T) {
 	sl := []int{1, 2, 3, 4, 5, 6, 7, 8, 9}
-	SelectionSort(sl)
+	SelectionSortBackward(sl)
 	fmt.Println(sl)
 
 	if !IsSorted(sl) {
