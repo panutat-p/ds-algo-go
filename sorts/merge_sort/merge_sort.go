@@ -34,6 +34,8 @@ func Merge(left []int, right []int) []int {
 		}
 	}
 
+	// if left or right are not equal size
+	// append remaining elements
 	sl = append(sl, left[i:]...)
 	sl = append(sl, right[j:]...)
 
