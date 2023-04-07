@@ -22,8 +22,7 @@ func QuickSortAppend(sl []int) []int {
 	}
 	fmt.Printf("%v  %v  %v\n", left, pivot, right)
 
-	rslt := append(QuickSortAppend(left), pivot)
-	rslt = append(rslt, QuickSortAppend(right)...)
-	fmt.Println(">>>", rslt)
-	return rslt
+	left = QuickSortAppend(left)
+	right = QuickSortAppend(right)
+	return append(append(left, pivot), right...)
 }
