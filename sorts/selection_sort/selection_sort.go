@@ -11,7 +11,6 @@ func SelectionSort(nums []int) []int {
 			if nums[i] > nums[j] {
 				// found lower value in the right
 				nums[i], nums[j] = nums[j], nums[i]
-				fmt.Println("nums", nums)
 			}
 		}
 	}
