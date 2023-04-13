@@ -6,8 +6,10 @@ import (
 	"time"
 )
 
-// SelectionSortSlice O(n^2) time
-func SelectionSortSlice(sl []int) []int {
+// Sort3 O(n^2) time
+// compare to max int
+// remove the targeted element from the slice until its length become zero
+func Sort3(sl []int) []int {
 	start := time.Now()
 	var sortedSl []int
 	for len(sl) != 0 {
@@ -22,7 +24,6 @@ func SelectionSortSlice(sl []int) []int {
 		sl = append(sl[:index], sl[(index+1):]...)
 		sortedSl = append(sortedSl, min)
 	}
-	elapsed := time.Since(start)
-	fmt.Println("time elapsed:", elapsed)
+	fmt.Println("time elapsed:", time.Since(start))
 	return sortedSl
 }
