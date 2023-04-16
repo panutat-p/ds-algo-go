@@ -18,3 +18,11 @@ func TestTree_create(t *testing.T) {
 		t.Error("want", want, "but got", got)
 	}
 }
+
+func TestTree_traversal(t *testing.T) {
+	tree := NewTree(0)
+	tree.Insert(1)
+	tree.Insert(2)
+
+	tree.Print()
+}

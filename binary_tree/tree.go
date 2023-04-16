@@ -1,5 +1,7 @@
 package binary_tree
 
+import "fmt"
+
 type Tree struct {
 	Root *Node
 	Size int
@@ -22,6 +24,7 @@ func (t *Tree) Insert(num int) {
 	t.Size += 1
 }
 
-//func (t *Tree) Print() {
-//	t.Root.Traverse()
-//}
+func (t *Tree) Print() {
+	t.Root.Traverse()
+	fmt.Println("end")
+}
