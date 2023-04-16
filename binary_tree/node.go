@@ -31,12 +31,11 @@ func (n *Node) Insert(num int) {
 }
 
 func (n *Node) Traverse() {
-	fmt.Printf("%v -> ", n.Key)
+	if n == nil {
+		return
+	}
 
-	if n.Left != nil {
-		n.Left.Traverse()
-	}
-	if n.Right != nil {
-		n.Right.Traverse()
-	}
+	fmt.Printf("%v -> ", n.Key)
+	n.Left.Traverse()
+	n.Right.Traverse()
 }
