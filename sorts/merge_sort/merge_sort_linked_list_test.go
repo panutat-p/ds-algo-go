@@ -2,16 +2,15 @@ package merge_sort
 
 import (
 	"fmt"
+	"github.com/panutat-p/fiset-complete-ds-go/singly_linked_list"
 	"testing"
-
-	"github.com/panutat-p/fiset-complete-ds-go/linked_list"
 )
 
 func TestSplitLinkedListOdd(t *testing.T) {
-	li := linked_list.LinkedList{}
-	n3 := linked_list.SinglyNode{Data: 3}
-	n2 := linked_list.SinglyNode{Data: 2, NextNode: &n3}
-	n1 := linked_list.SinglyNode{Data: 1, NextNode: &n2}
+	li := singly_linked_list.LinkedList{}
+	n3 := singly_linked_list.Node{Key: 3}
+	n2 := singly_linked_list.Node{Key: 2, NextNode: &n3}
+	n1 := singly_linked_list.Node{Key: 1, NextNode: &n2}
 	li.Head = &n1
 
 	left, right := SplitLinkedList(li)
@@ -28,11 +27,11 @@ func TestSplitLinkedListOdd(t *testing.T) {
 }
 
 func TestSplitLinkedListEven(t *testing.T) {
-	li := linked_list.LinkedList{}
-	n4 := linked_list.SinglyNode{Data: 4}
-	n3 := linked_list.SinglyNode{Data: 3, NextNode: &n4}
-	n2 := linked_list.SinglyNode{Data: 2, NextNode: &n3}
-	n1 := linked_list.SinglyNode{Data: 1, NextNode: &n2}
+	li := singly_linked_list.LinkedList{}
+	n4 := singly_linked_list.Node{Key: 4}
+	n3 := singly_linked_list.Node{Key: 3, NextNode: &n4}
+	n2 := singly_linked_list.Node{Key: 2, NextNode: &n3}
+	n1 := singly_linked_list.Node{Key: 1, NextNode: &n2}
 	li.Head = &n1
 	li.Traverse()
 
@@ -52,16 +51,16 @@ func TestSplitLinkedListEven(t *testing.T) {
 }
 
 func TestMergeLinkedList(t *testing.T) {
-	left := linked_list.LinkedList{}
-	n3 := linked_list.SinglyNode{Data: 7}
-	n2 := linked_list.SinglyNode{Data: 5, NextNode: &n3}
-	n1 := linked_list.SinglyNode{Data: 1, NextNode: &n2}
+	left := singly_linked_list.LinkedList{}
+	n3 := singly_linked_list.Node{Key: 7}
+	n2 := singly_linked_list.Node{Key: 5, NextNode: &n3}
+	n1 := singly_linked_list.Node{Key: 1, NextNode: &n2}
 	left.Head = &n1
 
-	right := linked_list.LinkedList{}
-	n33 := linked_list.SinglyNode{Data: 8}
-	n22 := linked_list.SinglyNode{Data: 4, NextNode: &n33}
-	n11 := linked_list.SinglyNode{Data: 2, NextNode: &n22}
+	right := singly_linked_list.LinkedList{}
+	n33 := singly_linked_list.Node{Key: 8}
+	n22 := singly_linked_list.Node{Key: 4, NextNode: &n33}
+	n11 := singly_linked_list.Node{Key: 2, NextNode: &n22}
 	right.Head = &n11
 
 	li := MergeLinkedList(left, right)
@@ -73,14 +72,14 @@ func TestMergeLinkedList(t *testing.T) {
 }
 
 func TestMergeSortLinkedList(t *testing.T) {
-	li := linked_list.LinkedList{}
-	n7 := linked_list.SinglyNode{Data: 1}
-	n6 := linked_list.SinglyNode{Data: 50, NextNode: &n7}
-	n5 := linked_list.SinglyNode{Data: 99, NextNode: &n6}
-	n4 := linked_list.SinglyNode{Data: 9, NextNode: &n5}
-	n3 := linked_list.SinglyNode{Data: 34, NextNode: &n4}
-	n2 := linked_list.SinglyNode{Data: 2, NextNode: &n3}
-	n1 := linked_list.SinglyNode{Data: 100, NextNode: &n2}
+	li := singly_linked_list.LinkedList{}
+	n7 := singly_linked_list.Node{Key: 1}
+	n6 := singly_linked_list.Node{Key: 50, NextNode: &n7}
+	n5 := singly_linked_list.Node{Key: 99, NextNode: &n6}
+	n4 := singly_linked_list.Node{Key: 9, NextNode: &n5}
+	n3 := singly_linked_list.Node{Key: 34, NextNode: &n4}
+	n2 := singly_linked_list.Node{Key: 2, NextNode: &n3}
+	n1 := singly_linked_list.Node{Key: 100, NextNode: &n2}
 	li.Head = &n1
 	li.Traverse()
 

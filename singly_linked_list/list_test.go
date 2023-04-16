@@ -1,4 +1,4 @@
-package linked_list
+package singly_linked_list
 
 import (
 	"fmt"
@@ -6,15 +6,14 @@ import (
 )
 
 func TestNodeConstructor(t *testing.T) {
-	n1 := Constructor(2)
+	n1 := NewNode(2)
 
-	n2 := Constructor(10)
+	n2 := NewNode(10)
 
 	fmt.Printf("n1: %+v\n", n1)
 	fmt.Printf("n2: %+v\n", n2)
 	fmt.Printf("&n2: %p\n", &n2)
 
-	//n1.NextNode = &n2
 	n1.SetNextNode(&n2)
 	fmt.Printf("\nn1.NextNode: %p\n\n", n1.NextNode)
 
@@ -25,14 +24,14 @@ func TestNodeConstructor(t *testing.T) {
 		t.Errorf("got %v, but expect %v", n1.NextNode, n2)
 	}
 
-	if n1.NextNode.Data != 10 {
-		t.Errorf("got %v, but expect %v", n1.NextNode.Data, 10)
+	if n1.NextNode.Key != 10 {
+		t.Errorf("got %v, but expect %v", n1.NextNode.Key, 10)
 	}
 }
 
 func TestLinkedListWith2Nodes(t *testing.T) {
-	n1 := Constructor(1)
-	n2 := Constructor(2)
+	n1 := NewNode(1)
+	n2 := NewNode(2)
 
 	li := LinkedList{&n1}
 	n1.SetNextNode(&n2)
@@ -48,14 +47,14 @@ func TestLinkedListWith2Nodes(t *testing.T) {
 }
 
 func TestLinkedListPrepend(t *testing.T) {
-	n1 := Constructor(2)
-	n2 := Constructor(3)
+	n1 := NewNode(2)
+	n2 := NewNode(3)
 
 	li := LinkedList{&n1}
 	n1.SetNextNode(&n2)
 	li.Traverse()
 
-	newNode := Constructor(1)
+	newNode := NewNode(1)
 	li.Prepend(&newNode)
 	li.Traverse()
 
@@ -66,7 +65,7 @@ func TestLinkedListPrepend(t *testing.T) {
 
 func TestLinkedListAppendToEmpty(t *testing.T) {
 	li := LinkedList{nil}
-	newNode := Constructor(100)
+	newNode := NewNode(100)
 	li.Append(&newNode)
 	li.Traverse()
 
@@ -76,14 +75,14 @@ func TestLinkedListAppendToEmpty(t *testing.T) {
 }
 
 func TestLinkedListAppend(t *testing.T) {
-	n1 := Constructor(10)
-	n2 := Constructor(20)
+	n1 := NewNode(10)
+	n2 := NewNode(20)
 	n1.SetNextNode(&n2)
-	n3 := Constructor(30)
+	n3 := NewNode(30)
 	n2.SetNextNode(&n3)
 
 	li := LinkedList{&n1}
-	n4 := Constructor(40)
+	n4 := NewNode(40)
 	li.Append(&n4)
 	li.Traverse()
 
@@ -93,12 +92,12 @@ func TestLinkedListAppend(t *testing.T) {
 }
 
 func TestLinkedListSearch(t *testing.T) {
-	n1 := Constructor(10)
-	n2 := Constructor(20)
+	n1 := NewNode(10)
+	n2 := NewNode(20)
 	n1.SetNextNode(&n2)
-	n3 := Constructor(30)
+	n3 := NewNode(30)
 	n2.SetNextNode(&n3)
-	n4 := Constructor(40)
+	n4 := NewNode(40)
 	n3.SetNextNode(&n4)
 
 	li := LinkedList{&n1}
@@ -118,20 +117,17 @@ func TestLinkedListSearch(t *testing.T) {
 }
 
 func TestLinkedListInsert(t *testing.T) {
-	n1 := Constructor(10)
-	n2 := Constructor(20)
+	n1 := NewNode(10)
+	n2 := NewNode(20)
 	n1.SetNextNode(&n2)
-	n4 := Constructor(40)
+	n4 := NewNode(40)
 	n2.SetNextNode(&n4)
 
 	li := LinkedList{&n1}
 	li.Traverse()
 
-	n3 := Constructor(30)
-	err := li.Insert(&n3, 2)
-	if err != nil {
-		panic(err)
-	}
+	n3 := NewNode(30)
+	li.Insert(&n3, 2)
 	li.Traverse()
 
 	if li.Size() != 4 {
@@ -140,12 +136,12 @@ func TestLinkedListInsert(t *testing.T) {
 }
 
 func TestLinkedListDelete(t *testing.T) {
-	n1 := Constructor(10)
-	n2 := Constructor(20)
+	n1 := NewNode(10)
+	n2 := NewNode(20)
 	n1.SetNextNode(&n2)
-	n3 := Constructor(30)
+	n3 := NewNode(30)
 	n2.SetNextNode(&n3)
-	n4 := Constructor(40)
+	n4 := NewNode(40)
 	n3.SetNextNode(&n4)
 
 	li := LinkedList{&n1}
@@ -158,12 +154,12 @@ func TestLinkedListDelete(t *testing.T) {
 }
 
 func TestLinkedListDeleteAtHead(t *testing.T) {
-	n1 := Constructor(10)
-	n2 := Constructor(20)
+	n1 := NewNode(10)
+	n2 := NewNode(20)
 	n1.SetNextNode(&n2)
-	n3 := Constructor(30)
+	n3 := NewNode(30)
 	n2.SetNextNode(&n3)
-	n4 := Constructor(40)
+	n4 := NewNode(40)
 	n3.SetNextNode(&n4)
 
 	li := LinkedList{&n1}
@@ -180,7 +176,7 @@ func TestLinkedListDeleteAtHead(t *testing.T) {
 }
 
 func TestLinkedListDeleteSingleNodeList(t *testing.T) {
-	n1 := Constructor(10)
+	n1 := NewNode(10)
 
 	li := LinkedList{&n1}
 	rst := li.Delete(10)

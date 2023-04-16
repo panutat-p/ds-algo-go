@@ -1,11 +1,11 @@
-package linked_list
+package doubly_linked_list
 
 import (
 	"testing"
 )
 
 func TestDoublyLinkedList_Insert(t *testing.T) {
-	li := DoublyLinkedList{}
+	li := LinkedList{}
 	li.Append(1)
 	li.Append(2)
 	li.Append(3)
@@ -20,7 +20,7 @@ func TestDoublyLinkedList_Insert(t *testing.T) {
 }
 
 func TestDoublyLinkedList_Remove(t *testing.T) {
-	li := DoublyLinkedList{}
+	li := LinkedList{}
 	li.Append(1)
 	li.Append(2)
 	li.Append(3)
@@ -39,7 +39,7 @@ func TestDoublyLinkedList_Remove(t *testing.T) {
 }
 
 func TestDoublyLinkedList_Remove_single_node(t *testing.T) {
-	li := DoublyLinkedList{}
+	li := LinkedList{}
 	li.Append(1)
 
 	rst := li.Remove(1)
@@ -55,7 +55,7 @@ func TestDoublyLinkedList_Remove_single_node(t *testing.T) {
 }
 
 func TestDoublyLinkedList_Pop(t *testing.T) {
-	li := DoublyLinkedList{}
+	li := LinkedList{}
 	li.Append(1)
 	li.Append(2)
 	li.Append(3)

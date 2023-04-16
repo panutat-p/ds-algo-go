@@ -1,4 +1,4 @@
-package linked_list
+package doubly_linked_list
 
 import (
 	"errors"
@@ -6,19 +6,13 @@ import (
 	"strings"
 )
 
-type DoublyNode struct {
-	Data int
-	Prev *DoublyNode
-	Next *DoublyNode
-}
-
-type DoublyLinkedList struct {
-	Head *DoublyNode
-	Tail *DoublyNode
+type LinkedList struct {
+	Head *Node
+	Tail *Node
 	Size int
 }
 
-func (li DoublyLinkedList) Print() {
+func (li *LinkedList) Print() {
 	var forward strings.Builder
 	current := li.Head
 	for {
@@ -26,7 +20,7 @@ func (li DoublyLinkedList) Print() {
 			forward.WriteString("nil")
 			break
 		}
-		tmp := fmt.Sprintf("%v -> ", current.Data)
+		tmp := fmt.Sprintf("%v -> ", current.Key)
 		forward.WriteString(tmp)
 		current = current.Next
 	}
@@ -39,19 +33,19 @@ func (li DoublyLinkedList) Print() {
 			backward.WriteString("nil")
 			break
 		}
-		tmp := fmt.Sprintf("%v -> ", current.Data)
+		tmp := fmt.Sprintf("%v -> ", current.Key)
 		backward.WriteString(tmp)
 		current = current.Prev
 	}
 	fmt.Println(backward.String())
 }
 
-func (li DoublyLinkedList) IsEmpty() bool {
+func (li *LinkedList) IsEmpty() bool {
 	return li.Size == 0
 }
 
-func (li *DoublyLinkedList) Append(num int) {
-	newNode := &DoublyNode{num, nil, nil}
+func (li *LinkedList) Append(num int) {
+	newNode := &Node{num, nil, nil}
 
 	if li.IsEmpty() {
 		li.Head, li.Tail = newNode, newNode
@@ -65,8 +59,8 @@ func (li *DoublyLinkedList) Append(num int) {
 	li.Size += 1
 }
 
-func (li *DoublyLinkedList) Prepend(num int) {
-	newNode := &DoublyNode{num, nil, nil}
+func (li *LinkedList) Prepend(num int) {
+	newNode := &Node{num, nil, nil}
 
 	if li.IsEmpty() {
 		li.Head, li.Tail = newNode, newNode
@@ -80,7 +74,7 @@ func (li *DoublyLinkedList) Prepend(num int) {
 	li.Size += 1
 }
 
-func (li *DoublyLinkedList) Insert(index int, num int) bool {
+func (li *LinkedList) Insert(index int, num int) bool {
 	if index < 0 || index > li.Size {
 		return false
 	}
@@ -99,21 +93,21 @@ func (li *DoublyLinkedList) Insert(index int, num int) bool {
 	for i := 0; i < index-1; i += 1 { // traverse to Node before index
 		current = current.Next
 	}
-	newNode := &DoublyNode{num, current, current.Next} // add newNode after the current Node
+	newNode := &Node{num, current, current.Next} // add newNode after the current Node
 	current.Next.Prev = newNode
 	current.Next = newNode
 	li.Size += 1
 	return true
 }
 
-func (li *DoublyLinkedList) Remove(num int) bool {
+func (li *LinkedList) Remove(num int) bool {
 	if li.IsEmpty() {
 		return false
 	}
 
 	current := li.Head
 	for current != nil {
-		if current.Data == num {
+		if current.Key == num {
 			if li.Size == 1 {
 				li.Head, li.Tail = nil, nil
 			} else if current == li.Head {
@@ -136,7 +130,7 @@ func (li *DoublyLinkedList) Remove(num int) bool {
 	return false
 }
 
-func (li *DoublyLinkedList) Pop(index int) (int, error) {
+func (li *LinkedList) Pop(index int) (int, error) {
 	if li.IsEmpty() {
 		return -1, errors.New("linked list is already empty")
 	}
@@ -146,7 +140,7 @@ func (li *DoublyLinkedList) Pop(index int) (int, error) {
 	}
 
 	if index == 0 {
-		data := li.Head.Data
+		data := li.Head.Key
 		li.Head = li.Head.Next
 		li.Head.Prev.Next = nil
 		li.Head.Prev = nil
@@ -155,7 +149,7 @@ func (li *DoublyLinkedList) Pop(index int) (int, error) {
 	}
 
 	if index == li.Size-1 {
-		data := li.Tail.Data
+		data := li.Tail.Key
 		li.Tail = li.Tail.Prev
 		li.Tail.Next.Prev = nil
 		li.Tail.Next = nil
@@ -168,7 +162,7 @@ func (li *DoublyLinkedList) Pop(index int) (int, error) {
 		for i := 0; i < index-1; i += 1 {
 			current = current.Next
 		}
-		data := current.Next.Data
+		data := current.Next.Key
 		current.Next.Next.Prev = current
 		current.Next = current.Next.Next
 		return data, nil
@@ -177,7 +171,7 @@ func (li *DoublyLinkedList) Pop(index int) (int, error) {
 		for i := li.Size - 1; i > index+1; i -= 1 {
 			current = current.Prev
 		}
-		data := current.Prev.Data
+		data := current.Prev.Key
 		current.Prev.Prev.Next = current
 		current.Prev = current.Prev.Prev
 		return data, nil

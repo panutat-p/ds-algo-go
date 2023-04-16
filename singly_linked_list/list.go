@@ -1,34 +1,13 @@
-package linked_list
-
-/*
-https://www.golangprograms.com/golang-program-for-implementation-of-linked-list.html
-*/
+package singly_linked_list
 
 import (
-	"errors"
 	"fmt"
 )
 
-type SinglyNode struct {
-	Data     int
-	NextNode *SinglyNode
-}
-
-func Constructor(data int) SinglyNode {
-	return SinglyNode{data, nil}
-}
-
-// SetNextNode
-// no need to implement setter because NextNode is public field
-func (n *SinglyNode) SetNextNode(next *SinglyNode) {
-	fmt.Printf("\nnext: %p", next)
-	fmt.Printf(", %+v\n", next)
-	n.NextNode = next
-}
-
+// LinkedList
+// https://www.golangprograms.com/golang-program-for-implementation-of-linked-list.html
 type LinkedList struct {
-	Head *SinglyNode
-	//tail Node
+	Head *Node
 }
 
 func (li *LinkedList) Traverse() {
@@ -59,7 +38,7 @@ func (li *LinkedList) Size() int {
 
 // Prepend
 // handle empty linked list
-func (li *LinkedList) Prepend(newNode *SinglyNode) {
+func (li *LinkedList) Prepend(newNode *Node) {
 	if li.IsEmpty() {
 		li.Head = newNode
 		return
@@ -72,13 +51,13 @@ func (li *LinkedList) Prepend(newNode *SinglyNode) {
 // Append
 // handle empty linked list
 // handle linked list with size of 1
-func (li *LinkedList) Append(newNode *SinglyNode) {
+func (li *LinkedList) Append(newNode *Node) {
 	if li.IsEmpty() {
 		li.Head = newNode
 		return
 	}
 
-	var previous *SinglyNode
+	var previous *Node
 	current := li.Head
 	for {
 		if current == nil {
@@ -90,14 +69,14 @@ func (li *LinkedList) Append(newNode *SinglyNode) {
 	}
 }
 
-func (li *LinkedList) Insert(newNode *SinglyNode, index int) error {
+func (li *LinkedList) Insert(newNode *Node, index int) {
 	if index == 0 {
 		li.Prepend(newNode)
-		return nil
+		return
 	}
 
 	if index > li.Size() {
-		return errors.New("index out of bound")
+		panic("index out of bound")
 	}
 
 	if index == li.Size() {
@@ -112,7 +91,6 @@ func (li *LinkedList) Insert(newNode *SinglyNode, index int) error {
 	right := current.NextNode
 	left.NextNode = newNode
 	newNode.NextNode = right
-	return nil
 }
 
 func (li *LinkedList) Delete(num int) bool {
@@ -120,7 +98,7 @@ func (li *LinkedList) Delete(num int) bool {
 		return false
 	}
 
-	var previous *SinglyNode
+	var previous *Node
 	fmt.Println("**********previous**********")
 	fmt.Println(previous)
 	current := li.Head
@@ -129,7 +107,7 @@ func (li *LinkedList) Delete(num int) bool {
 			return false
 		}
 
-		if current.Data == num {
+		if current.Key == num {
 			if li.Size() == 1 { // remove Head
 				li.Head = nil
 				return true
@@ -149,7 +127,7 @@ func (li *LinkedList) Delete(num int) bool {
 func (li *LinkedList) Search(num int) bool {
 	current := li.Head
 	for current != nil {
-		if current.Data == num {
+		if current.Key == num {
 			return true
 		} else {
 			current = current.NextNode
