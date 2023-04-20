@@ -53,3 +53,13 @@ func (n *Node) TraversePreOrder() {
 	n.Left.TraversePreOrder()
 	n.Right.TraversePreOrder()
 }
+
+func (n *Node) TraverseAppend(sl *[]int) {
+	if n == nil {
+		return
+	}
+
+	n.Left.TraverseAppend(sl)
+	*sl = append(*sl, n.Key)
+	n.Right.TraverseAppend(sl)
+}

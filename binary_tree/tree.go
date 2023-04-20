@@ -33,3 +33,11 @@ func (t *Tree) PrintPreOrder() {
 	t.Root.TraversePreOrder()
 	fmt.Println()
 }
+
+func (t *Tree) Slice() []int {
+	var (
+		sl = make([]int, 0, t.Size)
+	)
+	t.Root.TraverseAppend(&sl)
+	return sl
+}
