@@ -50,6 +50,6 @@ func (n *Node) TraversePreOrder() {
 	}
 
 	fmt.Printf("%v -> ", n.Key)
-	n.Left.TraverseInOrder()
-	n.Right.TraverseInOrder()
+	n.Left.TraversePreOrder()
+	n.Right.TraversePreOrder()
 }
