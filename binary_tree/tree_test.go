@@ -19,10 +19,14 @@ func TestTree_create(t *testing.T) {
 	}
 }
 
-func TestTree_traversal(t *testing.T) {
-	tree := NewTree(0)
-	tree.Insert(1)
+func TestTree_print_in_order(t *testing.T) {
+	tree := NewTree(6)
+	tree.Insert(4)
+	tree.Insert(7)
 	tree.Insert(2)
+	tree.Insert(5)
+	tree.Insert(1)
+	tree.Insert(3)
 
-	tree.Print()
+	tree.Print() // 1 -> 2 -> 3 -> 4 -> 5 -> 6 -> 7 -> end
 }

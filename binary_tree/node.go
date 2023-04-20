@@ -16,6 +16,9 @@ func NewNode(data int) *Node {
 	}
 }
 
+// Insert
+// fill empty child from top to bottom
+// after the root is full, fill left child
 func (n *Node) Insert(num int) {
 	if n.Left == nil {
 		n.Left = NewNode(num)
@@ -27,15 +30,15 @@ func (n *Node) Insert(num int) {
 		return
 	}
 
-	n.Left.Insert(num)
+	n.Left.Insert(num) // more elements always go to the left child
 }
 
-func (n *Node) Traverse() {
+func (n *Node) TraverseInOrder() {
 	if n == nil {
 		return
 	}
 
+	n.Left.TraverseInOrder()
 	fmt.Printf("%v -> ", n.Key)
-	n.Left.Traverse()
-	n.Right.Traverse()
+	n.Right.TraverseInOrder()
 }
