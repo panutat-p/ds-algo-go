@@ -54,6 +54,8 @@ func (n *Node) TraversePreOrder() {
 	n.Right.TraversePreOrder()
 }
 
+// TraverseAppend
+// in-order tree traversal
 func (n *Node) TraverseAppend(sl *[]int) {
 	if n == nil {
 		return
@@ -62,4 +64,43 @@ func (n *Node) TraverseAppend(sl *[]int) {
 	n.Left.TraverseAppend(sl)
 	*sl = append(*sl, n.Key)
 	n.Right.TraverseAppend(sl)
+}
+
+func (n *Node) InOrderIterative() {
+	var (
+		stack = NewStack()
+		curr  = n // root
+	)
+	for {
+		if curr != nil {
+			stack.Enqueue(curr)
+			curr = curr.Left
+		} else if len(stack) != 0 {
+			curr = stack.Dequeue()
+			fmt.Printf("%v -> ", curr.Key)
+			curr = curr.Right
+		} else {
+			break
+		}
+	}
+}
+
+type Stack []*Node
+
+func NewStack() Stack {
+	return Stack{}
+}
+
+func (s *Stack) Size() int {
+	return len(*s)
+}
+
+func (s *Stack) Enqueue(n *Node) {
+	*s = append(*s, n)
+}
+
+func (s *Stack) Dequeue() *Node {
+	last := (*s)[s.Size()-1]
+	*s = (*s)[:s.Size()-1]
+	return last
 }

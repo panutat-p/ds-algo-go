@@ -25,7 +25,7 @@ func (t *Tree) Insert(num int) {
 }
 
 func (t *Tree) PrintInOrder() {
-	t.Root.TraverseInOrder()
+	t.Root.InOrderIterative()
 	fmt.Println()
 }
 
