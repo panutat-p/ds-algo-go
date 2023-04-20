@@ -34,36 +34,36 @@ func (n *Node) Insert(num int) {
 	n.Left.Insert(num) // more elements always go to the left child
 }
 
-func (n *Node) TraverseInOrder() {
+func (n *Node) InOrder() {
 	if n == nil {
 		return
 	}
 
-	n.Left.TraverseInOrder()
+	n.Left.InOrder()
 	fmt.Printf("%v -> ", n.Key)
-	n.Right.TraverseInOrder()
+	n.Right.InOrder()
 }
 
-func (n *Node) TraversePreOrder() {
+func (n *Node) PreOrder() {
 	if n == nil {
 		return
 	}
 
 	fmt.Printf("%v -> ", n.Key)
-	n.Left.TraversePreOrder()
-	n.Right.TraversePreOrder()
+	n.Left.PreOrder()
+	n.Right.PreOrder()
 }
 
-// TraverseAppend
+// AppendInOrder
 // in-order tree traversal
-func (n *Node) TraverseAppend(sl *[]int) {
+func (n *Node) AppendInOrder(sl *[]int) {
 	if n == nil {
 		return
 	}
 
-	n.Left.TraverseAppend(sl)
+	n.Left.AppendInOrder(sl)
 	*sl = append(*sl, n.Key)
-	n.Right.TraverseAppend(sl)
+	n.Right.AppendInOrder(sl)
 }
 
 func (n *Node) InOrderIterative() {

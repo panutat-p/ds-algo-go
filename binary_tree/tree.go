@@ -25,12 +25,12 @@ func (t *Tree) Insert(num int) {
 }
 
 func (t *Tree) PrintInOrder() {
-	t.Root.InOrderIterative()
+	t.Root.InOrder()
 	fmt.Println()
 }
 
 func (t *Tree) PrintPreOrder() {
-	t.Root.TraversePreOrder()
+	t.Root.PreOrder()
 	fmt.Println()
 }
 
@@ -38,6 +38,6 @@ func (t *Tree) Slice() []int {
 	var (
 		sl = make([]int, 0, t.Size)
 	)
-	t.Root.TraverseAppend(&sl)
+	t.Root.AppendInOrder(&sl)
 	return sl
 }
