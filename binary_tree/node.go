@@ -18,7 +18,8 @@ func NewNode(data int) *Node {
 
 // Insert
 // fill empty child from top to bottom
-// after the root is full, fill left child
+// after the root is full, fill the left child
+// result in an unbalanced binary tree
 func (n *Node) Insert(num int) {
 	if n.Left == nil {
 		n.Left = NewNode(num)
@@ -40,5 +41,15 @@ func (n *Node) TraverseInOrder() {
 
 	n.Left.TraverseInOrder()
 	fmt.Printf("%v -> ", n.Key)
+	n.Right.TraverseInOrder()
+}
+
+func (n *Node) TraversePreOrder() {
+	if n == nil {
+		return
+	}
+
+	fmt.Printf("%v -> ", n.Key)
+	n.Left.TraverseInOrder()
 	n.Right.TraverseInOrder()
 }

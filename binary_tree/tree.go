@@ -24,7 +24,12 @@ func (t *Tree) Insert(num int) {
 	t.Size += 1
 }
 
-func (t *Tree) Print() {
+func (t *Tree) PrintInOrder() {
 	t.Root.TraverseInOrder()
-	fmt.Println("end")
+	fmt.Println()
+}
+
+func (t *Tree) PrintPreOrder() {
+	t.Root.TraversePreOrder()
+	fmt.Println()
 }
