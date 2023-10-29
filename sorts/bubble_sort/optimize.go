@@ -6,7 +6,7 @@ import (
 
 // OptimizedSort
 // stable
-// inplace
+// in-place
 func OptimizedSort(sl []int) {
 	count := 0
 

@@ -3,6 +3,9 @@ package quick_sort
 import "fmt"
 
 // QuickSortAppend
+// ❌ stable
+// ❌ in-place
+//
 // use additional space: left []int, right []int
 // easy to implement
 func QuickSortAppend(sl []int) []int {

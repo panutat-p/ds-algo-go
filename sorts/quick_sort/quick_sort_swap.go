@@ -5,7 +5,9 @@ https://www.programiz.com/dsa/quick-sort
 */
 
 // QuickSortSwap
-// inplace
+// ❌ stable
+// in-place
+//
 // use value at lastIndex as pivot
 // partitioning contains only one for loop
 func QuickSortSwap(sl []int, firstIndex int, lastIndex int) {

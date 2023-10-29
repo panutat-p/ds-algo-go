@@ -3,7 +3,9 @@ package quick_sort
 import "fmt"
 
 // QuickSortCross
-// inplace
+// ❌ stable
+// in-place
+//
 // use value at startIndex as pivot
 // partitioning iterate both i and j from both start and end
 func QuickSortCross(sl []int, startIndex int, lenIndex int) {
