@@ -1,5 +1,8 @@
 package bubble_sort
 
+// BackToFront
+// stable
+// inplace
 func BackToFront(nums []int) []int {
 	for i := 0; i < len(nums); i += 1 {
 		for j := 0; j < len(nums)-1; j += 1 {

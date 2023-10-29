@@ -7,8 +7,8 @@ import (
 
 func TestFrontToBack(t *testing.T) {
 	t.Run("1 to 5", func(t *testing.T) {
-		want := []int{1, 2, 3, 4, 5}
-		got := FrontToBack([]int{4, 3, 5, 1, 2})
+		want := []int{1, 1, 2, 3, 4, 5}
+		got := FrontToBack([]int{4, 1, 3, 5, 1, 2})
 		if !reflect.DeepEqual(want, got) {
 			t.Error("\nwant", want, "\ngot ", got)
 		}

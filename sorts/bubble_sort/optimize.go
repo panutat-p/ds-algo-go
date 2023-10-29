@@ -4,6 +4,9 @@ import (
 	"fmt"
 )
 
+// OptimizedSort
+// stable
+// inplace
 func OptimizedSort(sl []int) {
 	count := 0
 
