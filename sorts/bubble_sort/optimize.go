@@ -1,15 +1,9 @@
 package bubble_sort
 
-import (
-	"fmt"
-)
-
 // OptimizedSort
 // stable
 // in-place
 func OptimizedSort(sl []int) {
-	count := 0
-
 	for i := 0; i < len(sl)-1; i += 1 {
 		isSwapped := false
 		for j := 0; j < len(sl)-1-i; j += 1 {
@@ -17,12 +11,9 @@ func OptimizedSort(sl []int) {
 				sl[j], sl[j+1] = sl[j+1], sl[j]
 				isSwapped = true
 			}
-			count += 1
 		}
-		if !isSwapped { // already sorted
+		if !isSwapped {
 			break
 		}
 	}
-
-	fmt.Println("count:", count)
 }

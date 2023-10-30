@@ -1,9 +1,9 @@
-package bubble_sort
+package selection_sort
 
-// FrontToBack
+// Forward
 // stable
 // in-place
-func FrontToBack(nums []int) []int {
+func Forward(nums []int) []int {
 	for i := 0; i < len(nums); i += 1 {
 		for j := i + 1; j < len(nums); j += 1 {
 			if nums[i] > nums[j] {
