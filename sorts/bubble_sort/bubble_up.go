@@ -1,9 +1,9 @@
 package bubble_sort
 
-// Backward
+// BubbleUp
 // stable
 // in-place
-func Backward(nums []int) []int {
+func BubbleUp(nums []int) []int {
 	for i := 0; i < len(nums); i += 1 {
 		for j := 0; j < len(nums)-1-i; j += 1 {
 			if nums[j] > nums[j+1] {
