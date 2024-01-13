@@ -11,6 +11,10 @@ type entry struct {
 	value int
 }
 
+type Iterator struct {
+	current *list.Element
+}
+
 type LinkedHashMap struct {
 	dict map[string]*list.Element
 	list *list.List
@@ -58,6 +62,25 @@ func (m *LinkedHashMap) Keys() []string {
 		keys = append(keys, key)
 	}
 	return keys
+}
+
+func (m *LinkedHashMap) Iterator() *Iterator {
+	return &Iterator{
+		current: m.list.Front(),
+	}
+}
+
+func (it *Iterator) HasNext() bool {
+	return it.current != nil
+}
+
+func (it *Iterator) Next() (key string, value int) {
+	if it.current == nil {
+		return "", 0
+	}
+	v := it.current.Value.(*entry)
+	it.current = it.current.Next()
+	return v.key, v.value
 }
 
 func (m *LinkedHashMap) Size() int {

@@ -79,4 +79,23 @@ func TestLinkedHashMap(t *testing.T) {
 			t.Errorf("\nWant %d\nGot %d", 4, m.Size())
 		}
 	})
+	t.Run("linked hash map iterator", func(t *testing.T) {
+		m := NewLinkedHashMap()
+		m.Put("a", 1)
+		m.Put("b", 2)
+		m.Put("c", 3)
+		m.Put("d", 4)
+		m.Put("e", 5)
+		m.Put("f", 6)
+		m.Put("g", 7)
+		fmt.Println("m:", m)
+		it := m.Iterator()
+		for it.HasNext() {
+			k, v := it.Next()
+			fmt.Println(k, v)
+		}
+		if m.Size() != 7 {
+			t.Errorf("\nWant %d\nGot %d", 4, m.Size())
+		}
+	})
 }
