@@ -1,48 +1,41 @@
 package merge_sort
 
-import "fmt"
-
 // MergeSortSlice O(kn log n) time, O(n) space
 // copy original slice
-func MergeSortSlice(sl []int) []int {
-	if len(sl) <= 1 {
-		return sl
+func MergeSortSlice(nums []int) []int {
+	if len(nums) < 2 {
+		return nums
 	}
 
-	left, right := Split(sl)
-	fmt.Println("split slices:", left, right)
+	// split
+	// O(k log n) time
+	left := nums[:len(nums)/2]
+	right := nums[len(nums)/2:]
+
+	// repeat
 	left = MergeSortSlice(left)
 	right = MergeSortSlice(right)
-	return Merge(left, right)
-}
 
-// SplitSlice O(k log n) time
-// create 2 new slices from the original
-func SplitSlice(sl []int) ([]int, []int) {
-	return sl[:len(sl)/2], sl[len(sl)/2:]
-}
-
-// MergeSlice O(n) time
-// concatenate 2 sorted slices by picking lower value first
-func MergeSlice(left []int, right []int) []int {
-	var sl []int
-	i, j := 0, 0
-
+	// merge
+	// O(n) time
+	var (
+		i   int
+		j   int
+		ret []int
+	)
 	for i < len(left) && j < len(right) {
-		if left[i] < right[j] {
-			sl = append(sl, left[i])
+		if left[i] <= right[j] {
+			ret = append(ret, left[i])
 			i += 1
 		} else {
-			sl = append(sl, right[j])
+			ret = append(ret, right[j])
 			j += 1
 		}
 	}
 
-	// if left or right are not equal size
-	// append remaining elements
-	sl = append(sl, left[i:]...)
-	sl = append(sl, right[j:]...)
+	// merge remaining
+	ret = append(ret, left[i:]...)
+	ret = append(ret, right[j:]...)
 
-	fmt.Println("merged:", sl)
-	return sl
+	return ret
 }
