@@ -79,4 +79,17 @@ func TestLinkedMap(t *testing.T) {
 			t.Errorf("\nWant %d\nGot %d", 4, m.Size())
 		}
 	})
+	t.Run("set keys", func(t *testing.T) {
+		m := NewLinkedMap()
+		m.Put("a", 1)
+		m.Put("b", 2)
+		m.Put("c", 3)
+		fmt.Println("m before:", m)
+		m.Set("b", 20)
+		m.Set("d", 4)
+		fmt.Println("m after:", m)
+		if m.Size() != 4 {
+			t.Errorf("\nWant %d\nGot %d", 4, m.Size())
+		}
+	})
 }

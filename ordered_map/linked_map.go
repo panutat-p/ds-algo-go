@@ -26,6 +26,16 @@ func (m *LinkedMap) Get(key string) int {
 	return v
 }
 
+func (m *LinkedMap) Set(key string, value int) {
+	_, ok := m.dict[key]
+	if !ok {
+		m.list.PushBack(key)
+		m.dict[key] = value
+		return
+	}
+	m.dict[key] = value
+}
+
 // Put append key to list, and put key-value to map
 // remove existing key if already exists
 func (m *LinkedMap) Put(key string, value int) {
