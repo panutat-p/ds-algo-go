@@ -11,8 +11,8 @@ func MergeSortSlice(sl []int) []int {
 
 	left, right := Split(sl)
 	fmt.Println("split slices:", left, right)
-	left = MergeSort(left)
-	right = MergeSort(right)
+	left = MergeSortSlice(left)
+	right = MergeSortSlice(right)
 	return Merge(left, right)
 }
 
