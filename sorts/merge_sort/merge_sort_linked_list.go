@@ -1,7 +1,7 @@
 package merge_sort
 
 import (
-	"github.com/panutat-p/fiset-complete-ds-go/singly_linked_list"
+	singly_linked_list2 "github.com/panutat-p/fiset-complete-ds-go/linked_list/singly_linked_list"
 )
 
 /*
@@ -9,7 +9,7 @@ https://pkg.go.dev/container/list@go1.17.5#Element
 */
 
 // MergeSortLinkedList O(kn log n) time
-func MergeSortLinkedList(li singly_linked_list.LinkedList) singly_linked_list.LinkedList {
+func MergeSortLinkedList(li singly_linked_list2.LinkedList) singly_linked_list2.LinkedList {
 	if li.Size() == 1 { // base case
 		return li
 	}
@@ -22,11 +22,11 @@ func MergeSortLinkedList(li singly_linked_list.LinkedList) singly_linked_list.Li
 }
 
 // SplitLinkedList O(k log n) time
-func SplitLinkedList(li singly_linked_list.LinkedList) (singly_linked_list.LinkedList, singly_linked_list.LinkedList) {
+func SplitLinkedList(li singly_linked_list2.LinkedList) (singly_linked_list2.LinkedList, singly_linked_list2.LinkedList) {
 	size := li.Size()
 
 	if size == 0 {
-		return li, singly_linked_list.LinkedList{}
+		return li, singly_linked_list2.LinkedList{}
 	}
 
 	// midpoint is a node at index size/2
@@ -38,15 +38,15 @@ func SplitLinkedList(li singly_linked_list.LinkedList) (singly_linked_list.Linke
 		current = current.NextNode
 	}
 
-	right := singly_linked_list.LinkedList{Head: current.NextNode}
+	right := singly_linked_list2.LinkedList{Head: current.NextNode}
 	current.NextNode = nil // cut the chain at the midpoint
 	return li, right
 }
 
 // MergeLinkedList O(n) time
-func MergeLinkedList(left singly_linked_list.LinkedList, right singly_linked_list.LinkedList) singly_linked_list.LinkedList {
-	n := singly_linked_list.Node{} // fake node
-	li := singly_linked_list.LinkedList{Head: &n}
+func MergeLinkedList(left singly_linked_list2.LinkedList, right singly_linked_list2.LinkedList) singly_linked_list2.LinkedList {
+	n := singly_linked_list2.Node{} // fake node
+	li := singly_linked_list2.LinkedList{Head: &n}
 
 	current := li.Head
 	leftNode := left.Head
