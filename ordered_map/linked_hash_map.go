@@ -35,6 +35,16 @@ func (m *LinkedHashMap) Get(key string) int {
 	return elem.Value.(*entry).value
 }
 
+func (m *LinkedHashMap) Set(key string, value int) {
+	elem, ok := m.dict[key]
+	if !ok {
+		newElem := m.list.PushBack(&entry{key, value})
+		m.dict[key] = newElem
+		return
+	}
+	elem.Value.(*entry).value = value
+}
+
 // Put append key to list, and put key-value to map
 // remove existing key if already exists
 func (m *LinkedHashMap) Put(key string, value int) {
