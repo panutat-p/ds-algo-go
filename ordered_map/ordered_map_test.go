@@ -5,7 +5,7 @@ import (
 	"testing"
 )
 
-func TestArrayMap(t *testing.T) {
+func TestOrderedMap(t *testing.T) {
 	t.Run("7 elements", func(t *testing.T) {
 		m := NewOrderedMap()
 		m.Put("a", 1)
