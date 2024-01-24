@@ -1,6 +1,9 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"slices"
+)
 
 var count int
 
@@ -9,6 +12,9 @@ func main() {
 	sl = sort(sl)
 	fmt.Println(count)
 	fmt.Println(sl)
+	if !slices.IsSorted(sl) {
+		panic("not sorted")
+	}
 }
 
 func sort(nums []int) []int {
@@ -17,35 +23,39 @@ func sort(nums []int) []int {
 		return nums
 	}
 
-	// pivot
-	var (
-		left  []int
-		right []int
-	)
-	pivot := nums[0]
-	for _, n := range nums[1:] {
-		if pivot > n {
-			left = append(left, n)
-		} else {
-			right = append(right, n)
-		}
-		count += 1
-	}
+	// split
+	left := nums[:len(nums)/2]
+	right := nums[len(nums)/2:]
 
 	// repeat
 	left = sort(left)
 	right = sort(right)
 
-	// join
-	var ret []int
-	ret = append(ret, left...)
-	ret = append(ret, pivot)
-	ret = append(ret, right...)
-	return nums
+	var (
+		i   int
+		j   int
+		ret []int
+	)
+	// merge
+	for i < len(left) && j < len(right) {
+		count += 1
+		if left[i] <= right[j] {
+			ret = append(ret, left[i])
+			i += 1
+		} else {
+			ret = append(ret, right[i])
+			j += 1
+		}
+	}
+
+	// merge remaining
+	ret = append(ret, left[i:]...)
+	ret = append(ret, right[j:]...)
+	return ret
 }
 
-// bubble 156
-// bubble optimized 78
-// selection 78
-// quick 34
-// merge ?
+// bubble 156 comparisons
+// bubble optimized 78 comparisons
+// selection 78 comparisons
+// quick 34 comparisons, 17 call stacks
+// merge 34 comparisons, 25 call stacks
